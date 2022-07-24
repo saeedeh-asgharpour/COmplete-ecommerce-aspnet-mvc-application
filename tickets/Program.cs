@@ -1,11 +1,15 @@
 
+using Microsoft.EntityFrameworkCore;
 using tickets.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<AppDbContext>();
+
+//DbContext Configuration
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString
+    ("DefaultConnrctionString")));
 
 
 var app = builder.Build();
